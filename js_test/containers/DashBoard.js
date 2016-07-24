@@ -6,16 +6,12 @@ import * as dashboardActions from '../actions/dashboard';
 
 class Dashboard extends Component {
     renderBlock(block) {
-        console.log(block);
         const { dashboardActions }  = this.props;
-        const [left, top] = block.position;
         return (
             <DashboardBlock
-                key={block.key}
-                left={left}
-                top={top}
-                words={block.words}
-                fillColor={block.fillColor}
+                id={block.key}
+                {...block}
+                {...dashboardActions}
             />
         );
     }

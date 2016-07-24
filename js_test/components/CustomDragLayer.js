@@ -29,14 +29,17 @@ class CustomDragLayer extends Component {
                             left: currentOffset ? currentOffset.x : 0,
                             top: currentOffset ? currentOffset.y : 0
                         }}
-                        text={item.text}
+                        words={item.words}
                     />
                 );
         }
     }
 
     render() {
-        const { itemType, item, currentOffset } = this.props;
+        const { itemType, item, currentOffset, isDragging } = this.props;
+        if (!isDragging) {
+            return null;
+        }
         return (
             <div style={layerStyles}>
                 {this.renderItem(itemType, item, currentOffset)}

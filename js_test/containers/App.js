@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Dashboard from './Dashboard';
 import Candidates from './Candidates';
+import CustomDragLayer from '../components/CustomDragLayer';
+import Tip from '../components/Tip';
 import HTML5Backend from 'react-dnd-html5-backend';
 import { DragDropContext } from 'react-dnd';
 import { connect } from 'react-redux';
@@ -15,15 +17,27 @@ class App extends Component {
     }
 
     render() {
+        const { tip } = this.props;
         return (
             <div className="main">
-                <Dashboard />
-                <Candidates />
+                <Dashboard 
+                />
+                <Candidates 
+                />
+                <CustomDragLayer />
+                <Tip
+                    {...tip}
+                />
             </div>
         );
     }
 }
 
+function mapStateToProps(state) {
+    return {
+        tip: state.tip
+    }
+}
 
 function mapDispatchToProps(dispatch) {
     return {
@@ -31,5 +45,5 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-const connectedApp = connect(null, mapDispatchToProps)(App);
+const connectedApp = connect(mapStateToProps, mapDispatchToProps)(App);
 export default DragDropContext(HTML5Backend)(connectedApp);

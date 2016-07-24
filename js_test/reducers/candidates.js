@@ -3,17 +3,16 @@
  */
 
 import {
-    BEGIN_DRAP,
+    END_DROP,
     RECEIVE_TOPIC,
-    DROP_RIGHT,
-    DROP_WRONG,
     COMPLETE_ITEM
 } from '../constants/ActionTypes';
 
 import {
     RIGHT_SCORE,
     WRONG_SCORE,
-    CandidateStatus
+    CandidateStatus,
+    MAX_WRONG_COUNT
 } from '../constants/Config';
 
 const initialState = {
@@ -64,27 +63,20 @@ export default function candidates(state = initialState, action) {
                 })
             };
         }
-        case DROP_RIGHT:
+        case END_DROP:
+            const { wrongCount, key } = action.source;
+            const completed = action.right || (wrongCount+1 >= MAX_WRONG_COUNT);
             return {
-                blocks: state.blocks.map((block) => (
-                    action.key === block.key ? {
-                        ...block,
-                        score: !!block.score ? block.score : RIGHT_SCORE
-                    } : {...block})
-                )
+                items: state.items.map((item) => (
+                    key === item.key ?　{
+                        ...item,
+                        score: item.score  ? item.score : 
+                            action.right? RIGHT_SCORE : WRONG_SCORE,
+                        wrongCount: !action.right? wrongCount + 1 : wCount,
+                        status: completed ? CandidateStatus.COMPLETE : item.status
+                    } : {...item} 
+                ))
             };
-        case DROP_WRONG:
-            return {
-                blocks: state.blocks.map((block) => (
-                    action.key === block.key ? {
-                        ...block,
-                        score: !!block.score ? block.score : WRONG_SCORE,
-                        wrongCount: block.wrongCount + 1
-                    } : {...block})
-                )
-            };
-        case BEGIN_DRAP:
-            return {};
         default:
             return state;
     }

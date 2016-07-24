@@ -1,3 +1,6 @@
+/**
+ * 候选语句块
+ */
 import React, { Component,PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -5,23 +8,24 @@ import CandidateItem from '../components/CandidateItem';
 import * as candidatesActions from '../actions/candidates';
 
 class Candidates extends Component {
+
     renderItem(item) {
         const { candidatesActions }  = this.props;
         return (
             <CandidateItem
-                status={item.status}
-                key={item.key}
-                words={item.words}
+                id={item.key}
+               {...item}
             />
         );
     }
 
     render() {
         const { items } = this.props;
+        const length = items.lengthl
         return (
             <div className="candidates">
-                {items.map((item) => {
-                    return this.renderItem(item);
+                {items.map((item, index) => {
+                    return this.renderItem(item, index !== length-1);
                 })}
             </div>
         );

@@ -20,6 +20,23 @@
     border-bottom-right-radius: 10px;
 }
 
+.main .tip {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    width: 32px;
+    height: 32px;
+    background-size: contain;
+}
+
+.main .tip.right {
+    background-image: url('/static/images/right.png');
+}
+
+.main .tip.wrong {
+    background-image: url('/static/images/wrong.png');
+}
+
 .textBlock {
     padding: 10px;
 }
@@ -31,6 +48,7 @@
 
 .dashboard .textBlock {
     position: absolute;
+    border: 1px solid #72B2E6;
 }
 
 .dashboard .textBlock > span.highlight{
@@ -50,8 +68,6 @@
 }
 
 .candidates .textBlock {
-    position: relative;
-    float: left;
     margin: 5px;
 }
 

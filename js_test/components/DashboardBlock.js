@@ -8,8 +8,16 @@ import { ItemTypes } from '../constants/Config';
 import TextBlock from './TextBlock';
 
 const textTarget = {
-    drop() {
-        console.log('event', 'drop');
+    drop(props, monitor, component) {
+        const item = monitor.getItem();
+        // 获得拖动语句块的正确关联
+        const relates = item.relates;
+        const { id, endDrop } = props;
+        // 判断本次放置是否正确
+        const right = relates.indexOf(id) > -1;
+        // 结束放置
+        endDrop(item, id, right);
+           
     }
 };
 
@@ -22,8 +30,9 @@ function collect(connect, monitor) {
 
 class DashboardBlock extends Component {
     render() {
-        const { left, top, words, connectDropTarget, isOver } = this.props;
-        const status = isOver ? 'hover': 'right';
+        const { position, words, connectDropTarget, isOver, visible } = this.props;
+        const [left, top] = position;
+        const status = isOver ? 'hover': '';
         return connectDropTarget(
             <div>
                 <TextBlock
@@ -31,7 +40,8 @@ class DashboardBlock extends Component {
                     words={words}
                     style={{
                         left: left,
-                        top: top
+                        top: top,
+                        display: visible ? 'block' : 'none'
                     }}
                 />
             </div>
