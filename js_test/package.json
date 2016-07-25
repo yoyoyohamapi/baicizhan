@@ -29,6 +29,7 @@
   "dependencies": {
     "babel-preset-stage-0": "^6.5.0",
     "classnames": "^2.2.5",
+    "express": "^4.14.0",
     "react": "^15.2.1",
     "react-dnd": "^2.1.4",
     "react-dnd-html5-backend": "^2.1.2",
