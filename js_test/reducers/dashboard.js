@@ -1,6 +1,5 @@
 import {
     RECEIVE_TOPIC,
-    SHOW_BLOCK,
     END_DROP,
     REDO,
     PLAY,
@@ -9,7 +8,7 @@ import {
 } from '../constants/ActionTypes';
 
 import {
-    MAX_WRONG_COUMT,
+    MAX_WRONG_COUNT,
     DashboardStatus
 } from '../constants/Config';
 
@@ -34,20 +33,13 @@ export default function dashboard(state = initialState, action) {
                     sound: block.sound
                 }))
             };
-        case SHOW_BLOCK:
-            return {
-                blocks: state.blocks.map((block) => ({
-                    ...block,
-                    visible: action.key === block.key ? true : block.visible
-                }))
-            };
         case END_DROP:
             // 若达到错误次数，则显示
             const { wrongCount, relates, key } = action.source;
             // 正确的时候显示自身
             const showItself = action.right;
             // 达到错误次数时提示
-            const notifyRelates = !action.right && (wrongCount + 1 >= MAX_WRONG_COUMT);
+            const notifyRelates = !action.right && (wrongCount + 1 >= MAX_WRONG_COUNT);
             return {
                 blocks: state.blocks.map((block, index) => {
 

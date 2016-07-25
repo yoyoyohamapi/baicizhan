@@ -5,7 +5,6 @@
 import {
     END_DROP,
     RECEIVE_TOPIC,
-    COMPLETE_ITEM,
     REDO
 } from '../constants/ActionTypes';
 
@@ -41,25 +40,6 @@ export default function candidates(state = initialState, action) {
                         relates: block.relates,
                         score: 0,
                         wrongCount: 0,
-                        status: status
-                    }
-                })
-            };
-        }
-        // 完成一个时, 进行下一个
-        case COMPLETE_ITEM:{
-            let current = -1;
-            return {
-                items: state.items.map((item, index) => {
-                    let status;
-                    if (action.key === item.key) {
-                        status = CandidateStatus.COMPLETE;
-                        current = index+1;
-                    } else {
-                        status = index === current ? CandidateStatus.CURRENT : CandidateStatus.PENDING;
-                    }
-                    return {
-                        ...item,
                         status: status
                     }
                 })

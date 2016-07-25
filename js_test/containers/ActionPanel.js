@@ -10,12 +10,8 @@ import {
 
 class ActionPanel extends Component {
     render() {
-        const { items, tipVisible } = this.props;
+        const { hidden } = this.props;
         const { replay, redo, next } = this.props.actionPanelActions;
-        // 当tip还在显示中 且 有任务未完成时, 不限制操作面板
-        const hidden = items.some((item) => {
-            return item.status !== CandidateStatus.COMPLETE;
-        }) || tipVisible;
         return (
             <div
                 className={classnames('actionPanel', {'hidden': hidden, 'flex': !hidden})}
@@ -42,14 +38,17 @@ class ActionPanel extends Component {
 
 ActionPanel.propTypes = {
     actionPanelActions: PropTypes.object.isRequired,
-    items: PropTypes.array.isRequired,
+    hidden: PropTypes.array.isRequired,
     tipVisible: PropTypes.bool.isRequired
 };
 
 function mapStateToProps(state) {
+    const { items } = state.candidates;
+    const { visible } = state.tip;
     return {
-        items: state.candidates.items,
-        tipVisible: state.tip.visible
+        hidden: items.some((item) => {
+            return item.status !== CandidateStatus.COMPLETE;
+        }) || visible
     }
 }
 

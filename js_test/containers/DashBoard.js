@@ -49,7 +49,7 @@ class Dashboard extends Component {
     }
 
     render() {
-        const { blocks, play } = this.props;
+        const { blocks } = this.props;
         return (
             <div className="dashboard">
                 {blocks.map((block) => {
@@ -61,7 +61,8 @@ class Dashboard extends Component {
 }
 
 Dashboard.propTypes = {
-    blocks: PropTypes.array.isRequired
+    blocks: PropTypes.array.isRequired,
+    play: PropTypes.bool.isRequired
 };
 
 function mapStateToProps(state) {
