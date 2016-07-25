@@ -7,6 +7,10 @@ import {
     refreshCurrent
 } from './score';
 
+import {
+    getTopic
+} from './global';
+
 export function redo() {
     return (dispatch, getState)=> {
         dispatch({
@@ -15,6 +19,7 @@ export function redo() {
         });
     }
 }
+
 
 export function replay() {
     return {
@@ -27,5 +32,6 @@ export function next() {
         const { items } = getState().candidates;
         const currentScore = items.reduce((total, item)=>total+item.score, 0);
         dispatch(refreshCurrent(currentScore));
+        dispatch(getTopic());
     };
 }
