@@ -10,3 +10,6 @@ npm run prod
 ```
 
 访问[localhost:3000](http://localhost:3000)
+
+### 设计概要
+[参看](design)

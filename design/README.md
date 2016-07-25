@@ -99,7 +99,7 @@ export default {
 	- 是否处于拖拽（`isDragging`）
 	- 单词集合（`TextBlocks`）
 
-![CandidateItem](imgs/Candidate.png)
+![CandidateItem](imgs/CandidateItem.png)
 
 - 操作面板的语句块（`DashboardBlock`）
 	 - 位置信息（`position`）：将会描述语句块以及中文释义的
@@ -141,7 +141,7 @@ export default {
 	- 是否能够播放（`play`）
 	- 操作面板行为集（`dashboardActions`）
 
-![操作面板](imgs/Dashboard.png)
+![操作面板](imgs/dashboard.png)
 
 - 分数显示栏位（`Score`）:
 	- 分数（`score`）
@@ -218,13 +218,13 @@ const root = {
 	}
 }
 ```
+
 --------
 
 ## 分工解耦
 在腾讯实习期间，我也思考怎样的设计能尽可能的进行开发解耦，这次设计中的几个方面将会形成如下的开发解耦，提升各个开发人员的工作并行率：
 - 组件区分为__静态组件__及__容器组件__，将有助于将前端开发分为`生产者`和`消费者`，`生产者`将专注于撰写可复用组件，而`消费者`将专注于业务，理解状态，并使用这些组件来构成应用。
 - 数据结构的设计，让设计更容易描述设计（比如直接传递位置），也解放了研发的代码难度（直接使用位置）
-- 
 
 ----
 
