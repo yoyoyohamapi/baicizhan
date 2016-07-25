@@ -8,6 +8,7 @@ import { ItemTypes } from '../constants/Config';
 
 const layerStyles = {
     position: 'fixed',
+    cursor: 'pointer',
     pointerEvents: 'none',
     zIndex: 100,
     left: 0,
@@ -23,11 +24,10 @@ class CustomDragLayer extends Component {
             case ItemTypes.TEXT_DRAGGABLE:
                 return (
                     <TextBlock
+                        class="draggable"
                         style={{
-                            position: 'fixed',
-                            border: '1px solid',
-                            left: currentOffset ? currentOffset.x : 0,
-                            top: currentOffset ? currentOffset.y : 0
+                            left: currentOffset ? currentOffset.x : -1000,
+                            top: currentOffset ? currentOffset.y : -1000
                         }}
                         words={item.words}
                     />
@@ -37,14 +37,16 @@ class CustomDragLayer extends Component {
 
     render() {
         const { itemType, item, currentOffset, isDragging } = this.props;
+
         if (!isDragging) {
             return null;
         }
+
         return (
             <div style={layerStyles}>
                 {this.renderItem(itemType, item, currentOffset)}
             </div>
-        )
+        );
     }
 }
 

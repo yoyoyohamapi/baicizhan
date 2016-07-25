@@ -5,7 +5,8 @@
 import {
     END_DROP,
     RECEIVE_TOPIC,
-    COMPLETE_ITEM
+    COMPLETE_ITEM,
+    REDO
 } from '../constants/ActionTypes';
 
 import {
@@ -21,6 +22,7 @@ const initialState = {
 
 export default function candidates(state = initialState, action) {
     switch (action.type) {
+        case REDO:
         case RECEIVE_TOPIC: {
             const blocks = action.topic.blocks;
             let current = -1;
@@ -66,16 +68,25 @@ export default function candidates(state = initialState, action) {
         case END_DROP:
             const { wrongCount, key } = action.source;
             const completed = action.right || (wrongCount+1 >= MAX_WRONG_COUNT);
+            // 如果该语句块已完成, 则进行下一个语句块
+            let current = null;
             return {
-                items: state.items.map((item) => (
-                    key === item.key ?　{
-                        ...item,
-                        score: item.score  ? item.score : 
-                            action.right? RIGHT_SCORE : WRONG_SCORE,
-                        wrongCount: !action.right? wrongCount + 1 : wCount,
-                        status: completed ? CandidateStatus.COMPLETE : item.status
-                    } : {...item} 
-                ))
+                items: state.items.map((item, index) => {
+                        if(completed && item.key === key) {
+                            current = index + 1;
+                        }
+                        return key === item.key ? {
+                            ...item,
+                            score: item.score ? item.score :
+                                action.right ? RIGHT_SCORE : WRONG_SCORE,
+                            wrongCount: action.right ? item.wrongCount : wrongCount + 1,
+                            status: completed ? CandidateStatus.COMPLETE : item.status
+                        } : {
+                            ...item,
+                            status: current === index ? CandidateStatus.CURRENT : item.status
+                        };
+                    }
+                )
             };
         default:
             return state;

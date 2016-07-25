@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Dashboard from './Dashboard';
 import Candidates from './Candidates';
+import ActionPanel from './ActionPanel';
+import Score from './Score';
 import CustomDragLayer from '../components/CustomDragLayer';
 import Tip from '../components/Tip';
 import HTML5Backend from 'react-dnd-html5-backend';
@@ -19,15 +21,21 @@ class App extends Component {
     render() {
         const { tip } = this.props;
         return (
-            <div className="main">
-                <Dashboard 
-                />
-                <Candidates 
-                />
-                <CustomDragLayer />
-                <Tip
-                    {...tip}
-                />
+            <div className="container flex">
+                <div className="scores">
+                    <Score />
+                </div>
+                <div className="main flex">
+                    <Dashboard
+                    />
+                    <Candidates
+                    />
+                    <CustomDragLayer />
+                    <Tip
+                        {...tip}
+                    />
+                    <ActionPanel />
+                </div>
             </div>
         );
     }

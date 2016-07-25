@@ -14,7 +14,7 @@ const TextBlock = (props) =>
                 key={index}
                 className={classnames({highlight: word.highlight})}
             >
-                {word.title}
+                {word.title || word}
             </span>
         })
         }

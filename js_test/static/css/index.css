@@ -1,16 +1,45 @@
+.hidden {
+    display: none !important;
+}
+
+.flex {
+    display: flex !important;
+}
+
+.container {
+    flex-direction: column;
+    width: 800px;
+    padding: 20px;
+}
+
+.scores {
+    align-self: flex-end;
+    padding: 20px;
+    border: 2px dashed #440044;
+    background-color: white;
+    margin-bottom: 10px;
+    border-radius: 15px;
+}
+
+.scores .score > span {
+    font-weight: 700;
+    font-size: 24px;
+    font-style: italic;
+}
+
 .main {
     position: relative;
     width: 800px;
     margin: 0 auto;
-    display: flex;
     flex-direction: column;
-    border: 1px solid;
+    align-self: flex-end;
+    border: 2px solid #cccccc;
     border-radius: 10px;
 }
 
 .main .dashboard {
     width: 100%;
-    height: 400px;
+    height: 350px;
 }
 
 .main .candidates {
@@ -37,6 +66,9 @@
     background-image: url('/static/images/wrong.png');
 }
 
+/*
+ *   文字块样式
+ */
 .textBlock {
     padding: 10px;
 }
@@ -45,28 +77,61 @@
     padding: 5px;
 }
 
+.textBlock.draggable {
+    cursor: pointer !important;
+    position: fixed;
+    border: 2px solid;
+}
+
+/*
+ *   答题板样式
+ */
+.dashboard .lines .line {
+    position: absolute;
+    z-index: -1;
+}
+
+.dashboard .lines .line.vertical {
+    border-left: 2px solid #979797;
+}
+
+.dashboard .lines .line.horizontal {
+    border-bottom: 2px solid #979797;
+}
 
 .dashboard .textBlock {
     position: absolute;
-    border: 1px solid #72B2E6;
+    border: 2px solid #72B2E6;
+    height: 20px;
+    line-height: 20px;
+    background-color: white;
+}
+
+.dashboard .textBlock.desc {
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
 }
 
 .dashboard .textBlock > span.highlight{
-    color: #499013;
+    color: blue;
 }
 
 .dashboard .textBlock.hover {
     background-color: #A2C9EC;
 }
 
-.dashboard .textBlock.right {
-    background-color: #EBA63D;
-}
-
-.dashboard .textBlock.wrong {
+.dashboard .textBlock.notify {
     background-color: #8CCBB8;
 }
 
+.dashboard .textBlock.reading {
+    background-color: #ebc92b;
+}
+
+
+/*
+ *   语句候选区
+ */
 .candidates .textBlock {
     margin: 5px;
 }
@@ -78,4 +143,52 @@
 .candidates .textBlock.current {
     background-color: #72B2E6;
     color: white;
+    cursor: pointer;
+}
+
+/*
+ *   操作栏位样式
+ */
+.actionPanel {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    padding: 10px;
+    display: none;
+    flex-direction: row;
+}
+
+/* 操作按钮 */
+.actionPanel > div {
+    height: 44px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-right: 10px;
+}
+
+.actionPanel .redo {
+    width: 35px;
+    background-image: url("/static/images/redo.png");
+}
+
+.actionPanel .redo:hover {
+    background-image: url("/static/images/redo_hover.png");
+}
+
+.actionPanel .replay {
+    width: 47px;
+    background-image: url("/static/images/replay.png");
+}
+
+.actionPanel .replay:hover {
+    background-image: url("/static/images/replay_hover.png");
+}
+
+.actionPanel .next {
+    width: 37px;
+    background-image: url("/static/images/next.png");
+}
+
+.actionPanel .next:hover {
+    background-image: url("/static/images/next_hover.png");
 }

@@ -1,23 +1,17 @@
 import {
     SHOW_TIP,
-    HIDE_TIP,
-    REFRESH_TIP
+    HIDE_TIP
 } from '../constants/ActionTypes';
 
-export function showTip() {
+export function showTip(right) {
     return {
-        type: SHOW_TIP
-    };
-}
-
-export function refreshTip(right) {
-    return {
-        type: REFRESH_TIP,
+        type: SHOW_TIP,
         right
     };
+
 }
 
-function hideTip() {
+export function hideTip() {
     return {
         type: HIDE_TIP
     }

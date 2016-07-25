@@ -1,11 +1,11 @@
 /**
  * 行为图标
  */
-import classnames from 'classnames';
+import React from 'react';
 
 const ActionButton = (props) =>
-    <button
-        className={classnames('actionButton', props.type)}
+    <div
+        className={props.className}
         onClick={props.onClick}
     />;
 

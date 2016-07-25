@@ -26,6 +26,7 @@
   "author": "yoyoyohamapi",
   "license": "ISC",
   "dependencies": {
+    "babel-preset-stage-0": "^6.5.0",
     "classnames": "^2.2.5",
     "react": "^15.2.1",
     "react-dnd": "^2.1.4",
@@ -33,7 +34,8 @@
     "react-dom": "^15.2.1",
     "react-redux": "^4.4.5",
     "redux": "^3.5.2",
-    "redux-thunk": "^2.1.0"
+    "redux-thunk": "^2.1.0",
+    "soundmanager2": "^2.97.20150601a"
   },
   "devDependencies": {
     "webpack": "^1.13.1",

@@ -8,20 +8,19 @@ import CandidateItem from '../components/CandidateItem';
 import * as candidatesActions from '../actions/candidates';
 
 class Candidates extends Component {
-
     renderItem(item) {
         const { candidatesActions }  = this.props;
         return (
             <CandidateItem
                 id={item.key}
-               {...item}
+                {...item}
             />
         );
     }
 
     render() {
         const { items } = this.props;
-        const length = items.lengthl
+        const length = items.length;
         return (
             <div className="candidates">
                 {items.map((item, index) => {
