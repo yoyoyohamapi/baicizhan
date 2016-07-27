@@ -48,7 +48,7 @@ export default function dashboard(state = initialState, action) {
                             ...block,
                             visible: visible,
                             status: notifyRelates && Object.keys(relates).some((key) => parseInt(key) === block.key) ?
-                                DashboardStatus.NOTIFY : action.right && index === 0 ? DashboardStatus.READY : block.status
+                                DashboardStatus.NOTIFY : action.right && index === 0 ? DashboardStatus.READY : DashboardStatus.NONE
                         }
                     }
                 )
