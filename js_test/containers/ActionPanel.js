@@ -38,8 +38,7 @@ class ActionPanel extends Component {
 
 ActionPanel.propTypes = {
     actionPanelActions: PropTypes.object.isRequired,
-    hidden: PropTypes.array.isRequired,
-    tipVisible: PropTypes.bool.isRequired
+    hidden: PropTypes.bool.isRequired
 };
 
 function mapStateToProps(state) {

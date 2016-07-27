@@ -47,7 +47,7 @@ export default function candidates(state = initialState, action) {
         }
         case END_DROP:
             const { wrongCount, key } = action.source;
-            const completed = action.right || (wrongCount+1 >= MAX_WRONG_COUNT);
+            const completed = action.right;
             // 如果该语句块已完成, 则进行下一个语句块
             let current = null;
             return {

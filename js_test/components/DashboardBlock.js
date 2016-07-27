@@ -71,8 +71,7 @@ class DashboardBlock extends Component {
 }
 
 DashboardBlock.propTypes = {
-    position: PropTypes.array.isRequired,
-
+    position: PropTypes.array.isRequired
 }
 
 export default DropTarget(ItemTypes.TEXT_DRAGGABLE, textTarget, collect)(DashboardBlock);
